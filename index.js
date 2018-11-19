@@ -1,6 +1,8 @@
 /*
 * Brute Force Seeds in Blockchain
 * When find a seed will save in the logs
+* It scan about 20 seeds/sec
+* Each seed can have hundreds (or more) addresses
 * email@brunodasilva.com
 */
 
