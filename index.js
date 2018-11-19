@@ -10,8 +10,7 @@
 var bitcoin = require('bitcoinjs-lib')
 var bip39 = require('bip39')
 var bip32 = require('bip32')
-var blockchain = require('blockchain.info')
-var blockexplorer = require('blockchain.info/blockexplorer').usingNetwork(0)
+var blockchain = require('blockchain.info/blockexplorer').usingNetwork(0)
 var crypto = require('crypto')
 var fs = require('fs')
 
@@ -25,7 +24,7 @@ setInterval(function() {
     xSeedPrv[i] = bip39.entropyToMnemonic(crypto.randomBytes(16).toString('hex'))
     xPubKeys[i] = getPubKeyFromRoot(bip32.fromSeed(bip39.mnemonicToSeed(xSeedPrv[i] , "")), DerivationPath)
   }
-  blockexplorer.getMultiAddress(xPubKeys, {}).then(function(valor) {
+  blockchain.getMultiAddress(xPubKeys, {}).then(function(valor) {
     if(valor && valor.wallet && valor.wallet.n_tx > 0) {
       fs.writeFileSync("logs.txt", xSeedPrv.join("\r\n"))
     }
@@ -37,8 +36,7 @@ setInterval(function() {
 
 
 /*
-* @Function: getPubKeyFromRoot
-* Generate Public Key from Bip32Root/DerivationPath
+* Generate PublicKey from Bip32Root/DerivationPath
 * Original Function by Ian Coleman
 */
 function getPubKeyFromRoot(bip32RootKey, path) {
